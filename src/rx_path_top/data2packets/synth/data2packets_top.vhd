@@ -107,7 +107,8 @@ begin
       if sample_width = "01" then 
          inst2_pct_size <= std_logic_vector(to_unsigned(128,inst2_pct_size'length)); --128x64b=1024Bytes
       else 
-         inst2_pct_size <= std_logic_vector(to_unsigned(512,inst2_pct_size'length)); --512x64b=4096Bytes
+        -- inst2_pct_size <= std_logic_vector(to_unsigned(512,inst2_pct_size'length)); --512x64b=4096Bytes
+        inst2_pct_size <= std_logic_vector(to_unsigned(128,inst2_pct_size'length)); --512x64b=4096Bytes
       end if;
    end if;
 end process;
@@ -154,7 +155,8 @@ begin
       elsif sample_width = "01" then
          smpl_buff_rdusedw_min <= to_unsigned(144, smpl_buff_rdusedw_min'length);
       else
-         smpl_buff_rdusedw_min <= to_unsigned(510, smpl_buff_rdusedw_min'length);
+         --smpl_buff_rdusedw_min <= to_unsigned(510, smpl_buff_rdusedw_min'length);
+         smpl_buff_rdusedw_min <= to_unsigned(126, smpl_buff_rdusedw_min'length);
       end if;
    end if;
 end process;
@@ -209,7 +211,8 @@ begin
       elsif sample_width = "01" then
          inst0_smpl_rd_size <= std_logic_vector(to_unsigned(144, inst0_smpl_rd_size'length));
       else
-         inst0_smpl_rd_size <= std_logic_vector(to_unsigned(510, inst0_smpl_rd_size'length));
+         --inst0_smpl_rd_size <= std_logic_vector(to_unsigned(510, inst0_smpl_rd_size'length));
+         inst0_smpl_rd_size <= std_logic_vector(to_unsigned(126, inst0_smpl_rd_size'length));
       end if;
    end if;
 end process;
