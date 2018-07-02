@@ -27,7 +27,7 @@ signal clk0,clk1		         : std_logic;
 signal reset_n                : std_logic; 
    
 --dut0 signals
-signal dut0_sample_width      : std_logic_vector(1 downto 0) := "10"; --"10"-12bit, "01"-14bit, "00"-16bit;
+signal dut0_sample_width      : std_logic_vector(1 downto 0) := "00"; --"10"-12bit, "01"-14bit, "00"-16bit;
 signal dut0_pct_hdr_0         : std_logic_vector(63 downto 0) := (others=>'1');
 signal dut0_pct_hdr_1         : std_logic_vector(63 downto 0);         
 signal dut0_pct_buff_wrreq    : std_logic;

@@ -32,9 +32,9 @@ puts {
 
 #Add files to compile, follow compilation order(last file - top module)
 set library_file_list {
-                           source_library { ../general/sync_reg.vhd
-                                            ../general/bus_sync_reg.vhd
-                                            ../altera_inst/fifo_inst.vhd
+                           source_library { ../../general/sync_reg.vhd
+                                            ../../general/bus_sync_reg.vhd
+                                            ../../altera_inst/fifo_inst.vhd
                                             ../bit_pack/synth/pack_48_to_64.vhd
                                             ../bit_pack/synth/pack_56_to_64.vhd
                                             ../bit_pack/synth/bit_pack.vhd

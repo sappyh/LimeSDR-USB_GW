@@ -87,7 +87,7 @@ pct_data_wr_cnt_max_proc : process(reset_n, clk)
       if reset_n='0' then
          pct_data_wr_cnt_max <= (others=>'0');
       elsif (clk'event and clk = '1') then
-         pct_data_wr_cnt_max <= unsigned(pct_size)-4;
+         pct_data_wr_cnt_max <= unsigned(pct_size)-4; -- why 4? Should be 2.
       end if;
    end process;
 
@@ -214,16 +214,16 @@ fsm : process(current_state, pct_data_wrreq, pct_data_wr_cnt, pct_data_wr_cnt_ma
 	  
 		when idle => -- state
          if pct_data_wrreq = '1' then 
-            next_state <= s0;
+            next_state <= s0;  --01
          else 
-            next_state <= idle;
+            next_state <= idle; --00
          end if;
          
       when s0 => -- state
          if pct_data_wr_cnt = pct_data_wr_cnt_max AND pct_data_wrreq = '1' then 
-            next_state <= s1;
+            next_state <= s1; --10
          else 
-            next_state <= s0;
+            next_state <= s0; --01
          end if;
          
       when s1 => -- state

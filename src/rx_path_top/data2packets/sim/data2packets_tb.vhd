@@ -27,12 +27,14 @@ signal clk0,clk1		: std_logic;
 signal reset_n       : std_logic; 
    
    --dut0 signals
-signal dut0_pct_size          : std_logic_vector(15 downto 0):=x"0006";
+signal dut0_pct_size          : std_logic_vector(15 downto 0):=x"0010";
 signal dut0_pct_hdr_0         : std_logic_vector(63 downto 0):=x"0F0F0F0F0F0F0F0F";
 signal dut0_pct_hdr_1         : std_logic_vector(63 downto 0);
 signal dut0_pct_data          : std_logic_vector(63 downto 0);
 signal dut0_pct_data_wrreq    : std_logic;
 signal dut0_pct_data_wrreq_delay : std_logic;
+signal dut0_pct_data_q : std_logic_vector(63 downto 0);
+signal dut0_pct_data_outreq : std_logic;
 signal dut0_pct_state         : std_logic_vector(1 downto 0);
 signal pct_cnt                : unsigned(63 downto 0);
   
@@ -100,14 +102,14 @@ begin
    port map(              
       clk               => clk0,
       reset_n           => reset_n,
-      pct_size          => dut0_pct_size,
+      pct_size          => dut0_pct_size(14 downto 0),
       pct_hdr_0         => dut0_pct_hdr_0,
       pct_hdr_1         => dut0_pct_hdr_1,
       pct_data          => dut0_pct_data,
       pct_data_wrreq    => dut0_pct_data_wrreq,
       pct_state         => dut0_pct_state,
-      pct_wrreq         => open,
-      pct_q             => open
+      pct_wrreq         => dut0_pct_data_outreq,
+      pct_q             => dut0_pct_data_q
       );
       
 	
