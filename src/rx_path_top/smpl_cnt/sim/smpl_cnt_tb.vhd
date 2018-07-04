@@ -29,7 +29,10 @@ architecture tb_behave of smpl_cnt_tb is
    --dut0
    
    signal dut0_cnt_en : std_logic;
- 
+   signal dut0_q: std_logic_vector(63 downto 0);
+   
+   signal dut0_load : std_logic;
+   signal dut0_data: std_logic_vector(63 downto 0);
 
 begin 
   
@@ -61,8 +64,10 @@ begin
          dut0_cnt_en <= '1';
       end if;
    end process;
-   
-	
+
+   dut0_load <= '1','0' after 40ns;
+   dut0_data <= (0 =>'1', others=>'0');
+  
   
 smpl_cnt_dut0 : entity work.smpl_cnt 
    generic map(
@@ -79,11 +84,11 @@ smpl_cnt_dut0 : entity work.smpl_cnt
 		mimo_en		=> '1', -- SISO: 1; MIMO: 0
 		ch_en			=> "11", --"01" - Ch. A, "10" - Ch. B, "11" - Ch. A and Ch. B.
       --cnt
-      sclr        => '1',
-      sload       => '0',
-      data        => (others=>'1'),
+      sclr        => '0',
+      sload       => dut0_load,
+      data        => dut0_data,
       cnt_en      => dut0_cnt_en,
-      q           => open
+      q           => dut0_q
           
         );
 	

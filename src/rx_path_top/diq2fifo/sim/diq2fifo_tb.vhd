@@ -25,10 +25,10 @@ architecture tb_behave of diq2fifo_tb is
 	constant clk1_period   : time := 6.25 ns; 
 
 	signal inst0_mode			: std_logic:='0'; -- JESD207: 1; TRXIQ: 0
-	signal inst0_trxiqpulse	: std_logic:='1'; -- trxiqpulse on: 1; trxiqpulse off: 0
+	signal inst0_trxiqpulse	: std_logic:='0'; -- trxiqpulse on: 1; trxiqpulse off: 0
 	signal inst0_ddr_en 		: std_logic:='1'; -- DDR: 1; SDR: 0
-	signal inst0_mimo_en 	: std_logic:='1'; -- MIMO: 1; SISO: 0
-	signal inst1_ch_en		: std_logic_vector(1 downto 0):="10"; --"01" - Ch. A, "10" - Ch. B, "11" - Ch. A and Ch. B. 
+	signal inst0_mimo_en 	: std_logic:='0'; -- MIMO: 1; SISO: 0
+	signal inst1_ch_en		: std_logic_vector(1 downto 0):="01"; --"01" - Ch. A, "10" - Ch. B, "11" - Ch. A and Ch. B. 
 	signal inst0_fidm			: std_logic:='0'; -- External Frame ID mode. Frame start at fsync = 0, when 0. Frame start at fsync = 1, when 1. 
 
 	-- Data to BB
@@ -40,6 +40,9 @@ architecture tb_behave of diq2fifo_tb is
 	signal inst1_fifo_wrreq	: std_logic;
 	signal inst1_fifo_wdata : std_logic_vector(47 downto 0);
 
+	signal inst0_test_ptrn_en: std_logic:='0';
+	signal inst0_smpl_cmp_start:std_logic:='0';
+	signal inst0_smpl_cmp_length:std_logic_vector(15 downto 0) :=(others=>'0');
 
 
   --signals
@@ -69,7 +72,7 @@ begin
   
 inst0_LMS7002_DIQ2 : entity work.LMS7002_DIQ2_sim 
 generic map (
-	file_name => "sim/adc_data.txt",
+	file_name => "../smpl_cmp/sim/adc_data",
 	data_width => 12
 )
 port map(
@@ -96,6 +99,7 @@ inst1_diq2fifo : entity work.diq2fifo
 	port map (
       clk         => clk0,
       reset_n     => reset_n ,
+      test_ptrn_en =>inst0_test_ptrn_en,
       mode			=> inst0_mode,
 		trxiqpulse	=> inst0_trxiqpulse,
 		ddr_en 		=> inst0_ddr_en,
@@ -106,8 +110,11 @@ inst1_diq2fifo : entity work.diq2fifo
 		fsync	 	   => inst0_fsync,
       fifo_wrreq  => inst1_fifo_wrreq,
       fifo_wfull  => '0',
-      fifo_wdata  => inst1_fifo_wdata
-     
+      fifo_wdata  => inst1_fifo_wdata,
+	  smpl_cmp_start => inst0_smpl_cmp_start,
+      smpl_cmp_length => inst0_smpl_cmp_length,
+      smpl_cmp_done => open, 
+      smpl_cmp_err => open
         );
 	
 

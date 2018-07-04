@@ -33,7 +33,7 @@ puts {
 #Add files to compile, follow compilation order(last file - top module)
 set library_file_list {
                            source_library { 
-                                            ../altera_inst/lpm_cnt_inst.vhd
+                                            ../../altera_inst/lpm_cnt_inst.vhd
                                             synth/smpl_cnt.vhd
                                             sim/smpl_cnt_tb.vhd
                                             
