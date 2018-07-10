@@ -85,6 +85,7 @@ port map(
 		pktend	   			=> open,
 		EPSWITCH					=> open,
 
+		socket0_fifo_reset_n   => '1',
 		socket0_fifo_data		=> open,
 		socket0_fifo_q			=> (others=>'1'),
 		socket0_fifo_wrusedw	=> (others=>'1'),
@@ -92,12 +93,14 @@ port map(
 		socket0_fifo_wr		=> open,
 		socket0_fifo_rd		=> open,
 
+		socket1_fifo_reset_n   => '1',
 		socket1_fifo_data		=> open,
 		socket1_fifo_q			=> (others=>'1'),
 		socket1_fifo_wrusedw	=> (others=>'1'),
 		socket1_fifo_rdusedw	=> (others=>'1'),
 		socket1_fifo_wr		=> open,
 		socket1_fifo_rd		=> open,
+
 
 		socket2_fifo_data		=> open,
 		socket2_fifo_q			=> (others=>'1'),

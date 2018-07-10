@@ -42,7 +42,7 @@ entity lms7_trx_top is
       FX3_EP8F_WWIDTH         : integer := 32;     -- Control FPGA->PC, wr width
       -- 
       TX_N_BUFF               : integer := 4;      -- N 4KB buffers in TX interface (2 OR 4)
-      TX_PCT_SIZE             : integer := 4096;   -- TX packet size in bytes
+      TX_PCT_SIZE             : integer := 1024;   -- TX packet size in bytes
       TX_IN_PCT_HDR_SIZE      : integer := 16;
       WFM_INFIFO_SIZE         : integer := 4096;   -- WFM in FIFO buffer size in bytes 
       -- Internal configuration memory 

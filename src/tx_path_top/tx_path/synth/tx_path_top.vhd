@@ -233,7 +233,8 @@ begin
       if sample_width = "01" then 
          inst0_pct_size <= x"0100";
       else 
-         inst0_pct_size <= x"0400";
+      --    inst0_pct_size <= x"0400";
+         inst0_pct_size <= x"0100";
       end if;
 end process;
 
