@@ -246,7 +246,7 @@ begin
                                     --socketx_rdusedw_size has to be doubled to maintain same size
       data_dma_size        => 4096, --data endpoint dma size in bytes
       control_dma_size     => 4096, --control endpoint dma size in bytes
-      data_pct_size        => 4096, --packet size in bytes
+      data_pct_size        => 1024, --packet size in bytes
       control_pct_size     => 64,   --packet size in bytes, should be less then max dma size
       socket0_wrusedw_size => socket0_wrusedw_size,
       socket0_rdusedw_size => socket0_0_rdusedw_size,
